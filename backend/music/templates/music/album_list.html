@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Álbuns Cadastrados</title>
+    <style>
+        .album-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            max-width: 300px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .album-cover {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Álbuns Cadastrados</h1>
+    
+    {% for album in albums %}
+        <div class="album-card">
+            <h2>{{ album.title }}</h2>
+            <p><strong>Artista:</strong> {{ album.artist }}</p>
+            <p><strong>Lançamento:</strong> {{ album.release_date|date:"F j, Y" }}</p>
+            
+            {% if album.cover_image %}
+                <img src="{{ album.cover_image.url }}" alt="Capa de {{ album.title }}" class="album-cover">
+            {% else %}
+                <p>Sem capa disponível</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+</body>
+</html>
